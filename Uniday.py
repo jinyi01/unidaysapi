@@ -52,12 +52,20 @@ class Uniday:
     def get_code(self, url):
         if not self.logged_in:
             return False
+        if "www.myunidays.com/CA/en-CA/partners/" not in url:
+            raise Exception("Invalid URL")
+            
+        # parse url for partner
+        partner = url.split("partners/")[1].split("/access/online")[0]
+        # create url to get code
+        post_url = "https://perks.myunidays.com/access/{}/online".format(partner)
+
         form = {
             "forceNew": "true"
         }
-        r = self.s.post(url, data=form)
+        r = self.s.post(post_url, data=form)
         if r.status_code == 200:
-            # save reissue date and return code
+            # save reissue date using page url and return code
             self.reissue_on[url] = r.json()["canReissueOn"]
             return r.json()["code"]
         else:
