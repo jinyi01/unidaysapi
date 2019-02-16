@@ -56,7 +56,7 @@ class Uniday:
             raise Exception("Invalid URL")
             
         # parse url for partner
-        partner = url.split("partners/")[1].split("/access/online")[0]
+        partner = url.split("partners/")[1].split("/")[0]
         # create url to get code
         post_url = "https://perks.myunidays.com/access/{}/online".format(partner)
 
