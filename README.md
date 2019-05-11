@@ -1,4 +1,4 @@
-# Unofficial UNiDAY API
+# Unofficial UNiDAYS API wrapper
 
 Used to access UNiDAY discount codes
 
